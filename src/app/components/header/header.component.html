@@ -1,0 +1,38 @@
+<nav
+  class="absolute z-10 w-full p-5 text-white md:flex md:items-center md:justify-between"
+>
+  <div class="flex items-center justify-between">
+    <span class="flex w-auto cursor-pointer items-center gap-2 font-bold">
+      <!-- <img class="rounded-lg h-10" src="https://avatars.dicebear.com/api/initials/jerick%20pizarra.svg"/> -->
+      JERICKP.
+    </span>
+    <span
+      class="block cursor-pointer text-2xl md:hidden"
+      (click)="showMenu = !showMenu"
+    >
+      <i
+        [ngClass]="{ 'fa-times': showMenu, 'fa-bars': !showMenu }"
+        aria-hidden="true"
+        class="fa"
+      ></i>
+    </span>
+  </div>
+
+  <ul
+    class="absolute left-0 w-full p-4 md:static md:flex md:w-auto md:items-center md:p-0"
+    [ngClass]="{ hidden: !showMenu }"
+  >
+    <li class="mx-2 p-2">
+      <a class="cursor-pointer" (click)="scroll(about)">About</a>
+    </li>
+    <li class="mx-2 p-2">
+      <a class="cursor-pointer" (click)="scroll(technology)">Technologies</a>
+    </li>
+    <li class="mx-2 p-2">
+      <a class="cursor-pointer" (click)="scroll(experience)">Experience</a>
+    </li>
+    <li class="mx-2 p-2">
+      <a class="cursor-pointer" (click)="scroll(contact)">Contact</a>
+    </li>
+  </ul>
+</nav>
