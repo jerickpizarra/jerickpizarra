@@ -1,5 +1,6 @@
-import { outputAst } from '@angular/compiler';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { Experience } from 'src/app/interfaces/experience';
 
 @Component({
   selector: 'app-experience',
@@ -7,47 +8,37 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./experience.component.scss']
 })
 export class ExperienceComponent implements OnInit {
-  
-  experience = [
-    {
-      date: 'August 2021 - March 2022',
-      company: 'Accenture PH',
-      title: 'System Developer Associate',
-      description: [
-        'Central Measurement & Reporting',
-        'Deliver high performance through performance optimization',
-        'Demand & Capacity Management',
-        'Analyze, design, code and test multiple components of application code',
-        'Perform maintenance, enhancements and/or development work',
-      ]
-    },
-    {
-      date: 'September 2019 - August 2021',
-      company: 'Accenture PH',
-      title: 'Platform Experience Associate',
-      description: [
-        'Understand Client Policies and Guidelines',
-        'Review user reports regarding website content',
-        'Make decisions according to the defined Policies and Procedures',
-        'Interface effectively with other internal and Client teams',
-        'Provide quality assurance and improve machine classifiers',
-      ]
-    },
-    {
-      date: 'May 2018 - Oct 2018',
-      company: 'Civil Aviation Authority of the Philippines',
-      title: 'IT staff - Intern',
-      description: [
-        'Developed an Airmen Medical Record system for Medical Department',
-        'Troubleshoot and computer, printers maintenance',
-        'Set up and configure LAN server',
-        'Installation of OS, drivers, office tools and required software for workstations',
-      ]
-    },
-  ]
+  experiences: Experience[] = []
 
-  constructor() { }
+  constructor(private apiService:ApiService) { }
   ngOnInit(): void {
+    this.loadExperience()
+  }
+
+  loadExperience(){
+    this.apiService
+      .getExperiences()
+      .subscribe(
+        (res:any) => {
+          res.map((exp: {endDate:any;startDate:any; createdAt: any; updatedAt: any; __v: any; 
+            }) => {
+              let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+            delete exp.createdAt
+            delete exp.updatedAt
+            delete exp.__v
+
+            let starttmp = new Date(exp.startDate.split('T')[0])
+            exp.startDate = months[starttmp.getMonth()] + " " + starttmp.getFullYear()
+            let endtmp = new Date(exp.endDate.split('T')[0])
+            exp.endDate = months[endtmp.getMonth()] + " " + endtmp.getFullYear()
+            return exp
+          })
+          this.experiences = res.reverse()
+          console.log(res)
+        },
+        (error:any) => {
+        }
+      )
   }
 
 }

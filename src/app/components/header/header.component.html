@@ -2,7 +2,10 @@
   class="absolute z-10 w-full p-5 text-white md:flex md:items-center md:justify-between"
 >
   <div class="flex items-center justify-between">
-    <span class="flex w-auto cursor-pointer items-center gap-2 font-bold">
+    <span
+      (click)="apiService.logout()"
+      class="flex w-auto cursor-pointer items-center gap-2 font-bold"
+    >
       <!-- <img class="rounded-lg h-10" src="https://avatars.dicebear.com/api/initials/jerick%20pizarra.svg"/> -->
       JERICKP.
     </span>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,14 @@ export class HeaderComponent implements OnInit {
   toggleNavbar(){
     this.showMenu = !this.showMenu;
   }
-  constructor() { }
+  constructor(public apiService: ApiService) { }
 
   ngOnInit(): void {
   }
 
   scroll(el: HTMLElement) {
+    this.showMenu = false;
     el.scrollIntoView();
   }
+
 }

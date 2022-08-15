@@ -5,21 +5,18 @@
     </h1>
   </div>
   <ol class="relative border-l border-gray-200 dark:border-gray-700 md:ml-32">
-    <li class="mb-10 ml-4" *ngFor="let exp of experience">
+    <li class="mb-10 ml-4" *ngFor="let exp of experiences">
       <div
         class="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"
       ></div>
       <time
         class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
-        >{{ exp.date }}</time
+        >{{ exp.startDate + " - " + exp.endDate }}</time
       >
       <h3 class="text-sm">{{ exp.company }}</h3>
       <h3 class="text-lg font-semibold">{{ exp.title }}</h3>
-      <p
-        class="pl-4 font-normal text-gray-500 dark:text-gray-400"
-        *ngFor="let desc of exp.description"
-      >
-        {{ desc }}
+      <p class="pl-4 font-normal text-gray-500 dark:text-gray-400">
+        {{ exp.description }}
       </p>
     </li>
   </ol>

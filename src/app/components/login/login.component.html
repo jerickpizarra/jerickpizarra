@@ -1,0 +1,100 @@
+<section class="h-screen">
+  <div
+    *ngIf="isLoading"
+    class="absolute z-10 flex h-full w-full items-center justify-center bg-white bg-opacity-60"
+  >
+    <div class="flex items-center">
+      <span class="mr-4 text-3xl">Loading</span>
+      <!-- loading icon -->
+      <svg
+        class="h-5 w-5 animate-spin text-gray-600"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+      <!-- end loading icon -->
+    </div>
+  </div>
+  <div class="h-full px-6 text-gray-800">
+    <div
+      class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between xl:justify-center"
+    >
+      <div
+        class="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12"
+      >
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="w-full"
+          alt="Sample image"
+        />
+      </div>
+      <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:ml-20 xl:w-5/12">
+        <form
+          (ngSubmit)="submitForm()"
+          [formGroup]="form"
+          autocomplete="off"
+          (change)="change()"
+        >
+          <div
+            class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-gray-300 after:mt-0.5 after:flex-1 after:border-t after:border-gray-300"
+          >
+            <p class="mx-4 mb-0 text-center text-2xl font-semibold">Login</p>
+          </div>
+
+          <!-- Email input -->
+          <div class="mb-6">
+            <input
+              type="text"
+              class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+              placeholder="Username"
+              formControlName="username"
+              [ngClass]="{ 'border-red-400': invalid }"
+            />
+          </div>
+
+          <!-- Password input -->
+          <div class="mb-6">
+            <input
+              type="password"
+              class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+              placeholder="Password"
+              formControlName="password"
+              [ngClass]="{ 'border-red-400': invalid }"
+            />
+          </div>
+
+          <div class="text-center lg:text-left">
+            <button
+              type="submit"
+              class="inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
+            >
+              Login
+            </button>
+            <p class="mt-2 mb-0 pt-1 text-sm font-semibold">
+              This is only use for the owner of the Website. /
+              <a
+                [routerLink]="['/']"
+                class="text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700"
+                >Go back to Main page</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
